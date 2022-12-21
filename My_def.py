@@ -10,6 +10,6 @@ def random_list_int(lenth, start, finish):
     import random
     random_list = []
     for _ in range(lenth):
-        index = 0
-        random_list.append(int(random.uniform(start,finish)))
+        random_list.append(random.randint(start,finish))
     return random_list
+        

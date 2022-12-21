@@ -18,18 +18,16 @@ print(list01)
 list_str =[]
 for i in list01:
     list_str.append(str(i))
-# print(list_str)
 
-list_element=[]
+list_point=[]
 for i in list_str:
     x = i.find('.')
-    list_element.append(x)
-# print(list_element)
+    list_point.append(x)
 
 list_result = []
 j = 0
 for i in list_str:
-    x=i[list_element[j]::]
+    x=i[list_point[j]::]
     a = '0'+x
     list_result.append(float(a))
     j+=1  
