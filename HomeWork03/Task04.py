@@ -14,7 +14,6 @@ else:
 while num >=1 :
     i = num % 2
     num = num // 2
-    # print(num, end=' ')
     list_two_num.append(i)
 list_two_num.reverse()   
 

@@ -12,4 +12,11 @@ def random_list_int(lenth, start, finish):
     for _ in range(lenth):
         random_list.append(random.randint(start,finish))
     return random_list
+
+def fib(n):
+    if n in [1,2]:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
         
