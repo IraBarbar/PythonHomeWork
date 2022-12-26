@@ -7,12 +7,11 @@
 import random
 
 k_stepen = random.randint(1,20)
-print(k_stepen)
 
 def polynomial(k):
     list_polynomial = []
     for i in range(k+1):
-        koefficient = random.randint(0,100)
+        koefficient = random.randint(-100,100)
         if i == 0:
             list_polynomial.append((f'{koefficient}'))
         elif i == 1:
@@ -49,22 +48,62 @@ fun_01 = list_to_function_str(list_polynomial_01)
 print(fun_01)
 print()
 
+k_stepen = random.randint(1,20)
 list_polynomial_02 = polynomial(k_stepen)
 fun_02 = list_to_function_str(list_polynomial_02)
 print(fun_02)
 print()
 
-list_polynomial_03 = polynomial(k_stepen)
-fun_03 = list_to_function_str(list_polynomial_03)
-print(fun_03)
 
-data = open('file01.txt', 'w')
-data.writelines(fun_01)
-data.close()
+result = fun_01 + ' + ' + fun_02
+result = result.replace(' ', '').replace('=0', '').replace('-', '+-').split('+')
+result = list(filter(len, result))
 
-data02 = open('file02.txt', 'w')
-data02.writelines(fun_02)
-data02.close()
+
+start_count = 0
+for i in result:
+    if '**' in i:
+        if int(i[i.find('**')+2:]) > start_count:
+            start_count = int(i[i.find('**')+2:])        
+
+list_elements = []
+for count in range(start_count, 1, -1):
+    sum = 0
+    for i in result:        
+        if i[i.find('**')+2::] == str(count) and 'x**' in i:
+            if i.find('x') != 0 and ('-x' not in i) :
+                sum = sum + int(i[:i.find('*x'):])
+                new_string = str(sum) + str(i[i.find('*x')::])    
+            elif '-x' in i:
+                sum = sum - 1
+                new_string = str(sum) +'*'+ str(i[i.find('x')::])             
+            else:
+                sum = sum + 1
+                new_string = str(sum) +'*'+ str(i[i.find('x')::])               
+    list_elements.append(new_string)
+sum_x = 0
+sum_n = 0
+for i in result:
+    if 'x' in i:
+        if i[0] != 'x' and ('-x'  not in i):
+            sum_x = sum_x + int(i[:i.find('*'):])
+            new_string_n = str(sum_x) + '*x'          
+        elif '-x' in i:
+            sum_x = sum_x - 1
+            new_string_n = str(sum_x) + '*x'           
+    elif 'x' not in i:
+        sum_n = sum_n + int(i)
+        new_string_n = str(sum_n)   
+list_elements.append(new_string_n)
+print(list_elements)
+
+result_fun = ''
+result_fun = list_to_function_str(list_elements)
+ 
+print(result_fun)
+
+
+
 
 
 
