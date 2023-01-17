@@ -22,20 +22,18 @@ for i in range(1, len(num)):
 print(result)
 result = result
 
-
 alph = []
 for i in result:
     if i in string.ascii_lowercase:
         alph.append(i)
 
-
-nums = result.replace(alph[0], ' ').replace(
-    alph[1], ' ').replace(alph[2], ' ').replace(alph[3], ' ').split()
-
-nums = list(map(int,nums))
+for i in alph:
+    result = result.replace(i, ' ')
+nums = result.split()
+nums = list(map(int, nums))
 print(nums)
 my_revers = alph[0]*nums[0]
-for i in range(1,len(alph)):
+for i in range(1, len(alph)):
     my_revers = my_revers + alph[i]*nums[i]
 print(my_revers)
 

@@ -4,12 +4,10 @@ import random
 win_field = [[1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 2, 3],
              [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7]]
 
-
 def print_field(field):
     print(*(field[0][0], field[1][0]), field[2][0])
     print(*(field[0][1], field[1][1]), field[2][1])
     print(*(field[5][0], field[5][1]), field[5][2])
-
 
 print_field(win_field)
 
@@ -74,7 +72,6 @@ while True:
     win_field, list_num, field_bot = move_bot(
         win_field, user_name[1], zero, list_num, field_bot)
     print_field(win_field)
-    # print(field_bot)
     x = winner_is(win_field, zero)
     if x == True:
         print(f'{user_name[1]} - winner!')
