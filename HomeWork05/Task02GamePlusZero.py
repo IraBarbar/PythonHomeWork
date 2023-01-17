@@ -3,6 +3,7 @@
 win_field = [[1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 2, 3],
              [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7]]
 
+
 def print_field(field):
     print(*(field[0][0], field[1][0]), field[2][0])
     print(*(field[0][1], field[1][1]), field[2][1])
@@ -32,23 +33,28 @@ def winner_is(field, simbol):
         if i == [simbol, simbol, simbol]:
             return True
 
-def move_player(field, user, simbol):
+
+list_num = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+def move_player(field, user, simbol, num):
     move_us = int(input(f'{user}, input the number: '))
-    while move_us not in range(1,10):
+    while move_us not in num:
         move_us = int(input(f'{user}, input the number: '))
     for i in range(len(field)):
         for j in range(3):
             if field[i][j] == move_us:
                 field[i][j] = simbol
-                
-    return field
 
-
+    for i in range(len(num)):
+        if num[i] == move_us:
+            num[i] = 101
+    return field, num
 
 
 count = 0
 while True:
-    win_field = move_player(win_field, user_name[0], plus)
+    win_field, list_num = move_player(win_field, user_name[0], plus, list_num)
     count += 1
     print_field(win_field)
     x = winner_is(win_field, plus)
@@ -60,7 +66,7 @@ while True:
         print('End!')
         break
 
-    win_field = move_player(win_field, user_name[1], zero)
+    win_field, list_num = move_player(win_field, user_name[1], zero, list_num)
     count += 1
     print_field(win_field)
     x = winner_is(win_field, zero)
