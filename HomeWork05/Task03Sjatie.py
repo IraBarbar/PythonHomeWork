@@ -16,11 +16,11 @@ for i in new_data:
         x = data.count(i)
         num.append(x)
 
-result = str(str(num[0]) + str(new_data[0]))
+result = str(num[0]) + str(new_data[0])
 for i in range(1, len(num)):
     result = result + str(num[i]) + str(new_data[i])
 print(result)
-result = result
+
 
 alph = []
 for i in result:
@@ -29,6 +29,7 @@ for i in result:
 
 for i in alph:
     result = result.replace(i, ' ')
+    
 nums = result.split()
 nums = list(map(int, nums))
 print(nums)

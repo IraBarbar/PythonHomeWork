@@ -13,7 +13,7 @@ print_field(win_field)
 
 user_name = ['Player', 'Bot']
 plus = '+'
-zero = '0'
+zero = '-'
 print(f'{user_name[0]} - {plus}.\n{user_name[1]} - {zero}')
 
 def winner_is(field, simbol):

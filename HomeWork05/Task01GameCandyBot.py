@@ -71,7 +71,7 @@ if level_input  == level[0]:
         elif user_name[0] not in 'Bot':
             taken_candy = move_player(user_name[0], taken_candy, all_candy)
             if taken_candy > all_candy-1:
-                print (f'{i} - winner!')
+                print (f'{user_name[0]} - winner!')
                 break
         if user_name[1] in 'Bot':
             taken_candy = move_bot(taken_candy,all_candy)
@@ -81,7 +81,7 @@ if level_input  == level[0]:
         elif user_name[1] not in 'Bot':
             taken_candy = move_player(user_name[1], taken_candy, all_candy)
             if taken_candy > all_candy-1:
-                print (f'{i} - winner!')
+                print (f'{user_name[1]} - winner!')
                 break                                
 
 elif level_input == level[1]:    
@@ -94,7 +94,7 @@ elif level_input == level[1]:
         elif user_name[0] not in 'Bot':
             taken_candy = move_player(user_name[0], taken_candy, all_candy)
             if taken_candy > all_candy-1:
-                print (f'{i} - winner!')
+                print (f'{user_name[0]} - winner!')
                 break
         if user_name[1] in 'Bot':
             taken_candy = move_bot_hard(taken_candy,all_candy)
@@ -104,6 +104,6 @@ elif level_input == level[1]:
         elif user_name[1] not in 'Bot':
             taken_candy = move_player(user_name[1], taken_candy, all_candy)
             if taken_candy > all_candy-1:
-                print (f'{i} - winner!')
+                print (f'{user_name[1]} - winner!')
                 break
        
