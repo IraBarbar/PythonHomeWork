@@ -95,7 +95,7 @@ for i in result:
         sum_n = sum_n + int(i)
         new_string_n = str(sum_n)   
 list_elements.append(new_string_n)
-print(list_elements)
+
 
 result_fun = ''
 result_fun = list_to_function_str(list_elements)

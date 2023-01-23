@@ -19,4 +19,9 @@ def fib(n):
     else:
         return fib(n-1) + fib(n-2)
 
-        
+def replace_math_symbol(data):
+    synbol = ['+', '*']
+    for i in synbol:
+        data = data.replace(i, ' ' + i + ' ')
+    data = data.split()
+    return data        

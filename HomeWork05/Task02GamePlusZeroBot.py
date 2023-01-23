@@ -21,7 +21,9 @@ def winner_is(field, simbol):
         if i == [simbol, simbol, simbol]:
             return True
 
-list_num = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# list_num = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+list_num = [i for i in range(1,10)]
+
 field_bot = [[1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 2, 3],
              [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7]]
 
@@ -42,6 +44,8 @@ def move_bot(field, user, simbol, num, bot):
         for e in bot:
             for j in e:
                 move_us = random.choice(e)
+        
+    
     else:
         move_us = random.choice(num)
     print((f'{user}, input the number {move_us}'))

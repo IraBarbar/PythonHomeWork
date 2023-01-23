@@ -13,11 +13,11 @@ new_data = sorted(list(new_data))
 num = []
 for i in new_data:
     if i in data:
-        x = data.count(i)
-        num.append(x)
+        num_letters = data.count(i)
+        num.append(num_letters)
 
-result = str(num[0]) + str(new_data[0])
-for i in range(1, len(num)):
+result = str()
+for i in range(len(num)):
     result = result + str(num[i]) + str(new_data[i])
 print(result)
 
@@ -32,9 +32,9 @@ for i in alph:
     
 nums = result.split()
 nums = list(map(int, nums))
-print(nums)
-my_revers = alph[0]*nums[0]
-for i in range(1, len(alph)):
+
+my_revers = str()
+for i in range(len(alph)):
     my_revers = my_revers + alph[i]*nums[i]
 print(my_revers)
 

@@ -8,18 +8,16 @@
 # - x=2; y=4-> 1
 # - x=-34; y=-30 -> 3
 
-print ('Please, input X :')
-x = int(input())
-print ('Please, input Y :')
-y = int(input())
+
+x = int(input('Please, input X: '))
+y = int(input('Please, input Y: '))
+
 
 while x == 0 or y == 0:
     print('The wrong number!!!')
-    print ('Please, input X :')
-    x = int(input())
-    print ('Please, input Y :')
-    y = int(input())
-
+    x = int(input('Please, input X : '))
+    y = int(input('Please, input Y : '))
+    
 if x > 0 and y > 0 :
     print (f'{x} and {y} - 1 quarter')
 elif x < 0 and y > 0 :
@@ -28,4 +26,6 @@ elif x < 0 and y < 0 :
     print (f'{x} and {y} - 3 quarter')
 elif x > 0 and y < 0 :
     print (f'{x} and {y} - 4 quarter')
+    
+
 
