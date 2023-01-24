@@ -1,7 +1,6 @@
 import model
 import view
 
-
 bd_list = model.open_data(model.path)
 
 def menu():
@@ -28,7 +27,7 @@ def find_contact(list_bd):
                 clause = True      
     if clause == False:
         print(f'\tНичего не нашёл.\n')
-        
+
 def processing_request(num):
     match num:
         case 1:

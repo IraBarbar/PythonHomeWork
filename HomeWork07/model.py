@@ -2,7 +2,6 @@ path = 'HomeWork07/basa_dannyh.txt'
 list_bd = []
 count = 1
 
-
 def open_data(path):
     global list_bd
     global count
@@ -89,14 +88,9 @@ def del_contact(list_bd: list):
         new_enumerate_id(list_bd)
     return list_bd
 
-            
-        
-
-            
-
-
-def save_list(list_bd):
-    data_write = open('HomeWork07/basa_dannyh.txt', 'w', encoding='UTF-8')
+def save_list(list_db):
+    global path
+    data_write = open(path, 'w', encoding='UTF-8')
     for i in range(len(list_bd)):
         string_bd = str()
         for key, val in list_bd[i].items():
