@@ -35,21 +35,20 @@ def set_bd(list_bd: list):
     return list_bd
 
 
-def change_contact():
+def change_contact(id_contact):
     global list_bd
-    id_contact = int(
-        input('Выберите id контакта, который вы планируете изменить: '))
+    id_contact 
     for line in list_bd:
         for key, val in line.items():
             if val == id_contact:
                 print(f'\n{line}')
                 for num, key in enumerate(line, 1):
                     print(f'\t{num} - {key}')
-                user = int(
+                user =  int(
                     input('Введите пунк ключа, значение  которого вы хотите поменять: '))
                 while user not in range(1,6):
                     user = int(
-                    input('Введите пунк ключа, значение  которого вы хотите поменять: '))
+                        input('Введите пунк ключа, значение  которого вы хотите поменять: '))
                 match user:
                     case 1:
                         user = 'id'
@@ -74,11 +73,9 @@ def new_enumerate_id(list_bd):
         count +=1
     return list_bd
 
-def del_contact(list_bd: list):
+def del_contact(list_bd: list, id_contact):
     global count
     old_len = len(list_bd)
-    id_contact = int(
-        input('Выберите id контакта, который вы планируете удалить: '))
     for line in list_bd:
         for key, val in line.items():
             if val == id_contact:

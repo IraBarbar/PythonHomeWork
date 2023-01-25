@@ -11,11 +11,20 @@ def show_menu(list_menu):
     while (num_paragraph not in range(1,9)):
         num_paragraph = int(input('Ошибка! Выберите пункт меню: '))
     return num_paragraph     
-        
-        
 
-    
-        
+def input_del_id_contac():
+    id_contact = int(
+        input('Выберите id контакта, который вы планируете удалить: '))
+    return id_contact    
+
+def input_change_id():
+    id_contact = int(
+        input('Выберите id контакта, который вы планируете изменить: '))
+    return id_contact
+   
+
+
+
  
 
     

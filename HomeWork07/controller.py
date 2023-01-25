@@ -37,10 +37,11 @@ def processing_request(num):
             model.set_bd(bd_list)
             processing_request(view.show_menu(list_menu))
         case 3:
-            model.change_contact()
+            id_contact = view.input_change_id()
+            model.change_contact(id_contact )
             processing_request(view.show_menu(list_menu))
         case 4:
-            model.del_contact(bd_list)
+            model.del_contact(bd_list, view.input_del_id_contac())
             processing_request(view.show_menu(list_menu))
         case 5:
             find_contact(bd_list)
