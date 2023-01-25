@@ -33,10 +33,12 @@ def show_journal(student):
         n = key
         print(  f'\t{i}. {key}   \t{val}')
         i+=1    
-    return     
+         
 
 def name_student():
     num =int(input('Кто идет отвечать? Введите порядковый номер студента: ')) 
     return num   
 
 # def show_name()
+def grade():
+    return int(input('Оценка: '))

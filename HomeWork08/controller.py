@@ -13,13 +13,18 @@ def start( ):
 
 
 def input_student(student):
-    num = view.name_student()
-    list_keyes = []
-    for key in student:
-        n = key
-        list_keyes.append(n)
-    print(f' \t{num}. {list_keyes[num-1]} \t{student[list_keyes[num-1]]}')
-    
+    while True:
+        num = view.name_student()
+        list_keyes = []
+        for key in student:
+            n = key
+            list_keyes.append(n)
+        print(f' \t{num}. {list_keyes[num-1]} \t{student[list_keyes[num-1]]}')
+        grade = view.grade()
+        student[list_keyes[num-1]].append(grade)
+        view.show_journal(student)
+        if input('Выйти из журнала? ') == 'Да' or 'да':
+            exit()
      
 
 
