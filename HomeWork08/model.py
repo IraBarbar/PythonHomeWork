@@ -44,4 +44,4 @@ def save_data(path, subject):
         data_write.write(f'{string_journal}\n')
     data_write.close()
                     
-        
+    
