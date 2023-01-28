@@ -1,7 +1,5 @@
-
 journal = dict()
 student = dict()
-
 
 def open_data(path, subject):
     global journal

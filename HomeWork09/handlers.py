@@ -44,13 +44,16 @@ async def mes_all(message: types.Message):
         user = int(message.text)
         if user in range(1, 29):
             total -= user  
-                    
-            take_bot = taken_bot()
-            total = total-take_bot          
-            if total <= 0:
-                await message.answer(f' Победа!!!')
-            else:
-                await message.answer(f'{random.choice(view.answer_list())}\n'
+            if total == 0:
+                await message.answer(f'{message.from_user.first_name}, поздравляю!'
+                f' \nТы победитель!!!')
+            else:        
+                take_bot = taken_bot()
+                total = total-take_bot          
+                if total <= 0:
+                    await message.answer(f' Победа сегодня за мной!\n ')
+                else:
+                    await message.answer(f'{random.choice(view.answer_list())}\n'
                                         f'Тогда я возьму  {take_bot} шт. '
                                         f'\nНа столе осталось  конфет - {total} шт. ')
             
