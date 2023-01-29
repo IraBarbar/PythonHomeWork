@@ -54,7 +54,7 @@ async def mes_all(message: types.Message):
                     await message.answer(f' Победа сегодня за мной!\n ')
                 else:
                     await message.answer(f'{random.choice(view.answer_list())}\n'
-                                        f'Тогда я возьму  {take_bot} шт. '
+                                        f'Тогда я возьму - {take_bot} шт. '
                                         f'\nНа столе осталось  конфет - {total} шт. ')
             
         elif user not in range(1,29):
