@@ -15,7 +15,7 @@ def write_data(message: types.Message):
     user_come.append(message.from_user.username)
     user_come.append(message.location)
     user_come = list(map(str, user_come))
-    with open('userCome.txt', 'a', encoding='UTF-8') as data:
+    with open('C:/Users/Ирина/Downloads/userCome.txt', 'a', encoding='UTF-8') as data:
         data.write('🔺'.join(user_come) + '\n')
 
 @dp.message_handler(commands=['start'])
