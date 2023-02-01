@@ -1,30 +1,42 @@
 from aiogram import types
+from keyboards import kb_main_menu, kb_main_set
 from create import dp
 import random
 import view
+from datetime import datetime
 
+total = view.num_start
 
-name_bot = 'Reby'
-total = 150
-
+def write_data(message: types.Message):
+    user_come = []
+    user_come.append(str(datetime.now())[:-7])
+    user_come.append(message.from_user.full_name)
+    user_come.append(message.from_user.id)
+    user_come.append(message.from_user.username)
+    user_come.append(message.location)
+    user_come = list(map(str, user_come))
+    with open('userCome.txt', 'a', encoding='UTF-8') as data:
+        data.write('🔺'.join(user_come) + '\n')
 
 @dp.message_handler(commands=['start'])
 async def mes_start(message: types.Message):
-    await message.answer(
-        (f'Привет, {message.from_user.first_name} :)\n'
-         f'Меня зовут {name_bot}. \n'
-         f'Я бот. Если хочешь узнать , что я умею, вышли /menu .'))
+    await message.answer(f'🎊🎊 Привет, {message.from_user.first_name} !\n'
+                         f'Меня зовут {view.name_bot}.',
+                         reply_markup=kb_main_menu)
+    write_data(message)
 
 
-@dp.message_handler(commands=['menu'])
-async def mes_menu(message: types.Message):
-    await message.answer(f'{message.from_user.first_name}, давай поиграем в конфетки. '
-                         f'Здесь правила игры /rule .\n')
+
+@dp.message_handler(commands=['game'])
+async def mes_game(message: types.Message):
+    await message.answer(f'{message.from_user.first_name}, давай поиграем в конфетки. ',
+                         reply_markup=kb_main_set)
 
 
 @dp.message_handler(commands=['rule'])
 async def mes_rule(message: types.Message):
-    await message.answer(f'{view.rul()}, {message.from_user.first_name}! ')
+    await message.answer(f'{view.rul()}, {message.from_user.first_name}!',
+                         reply_markup=kb_main_set)
 
 
 @dp.message_handler(commands=['set'])
@@ -43,27 +55,28 @@ async def mes_all(message: types.Message):
     if message.text.isdigit():
         user = int(message.text)
         if user in range(1, 29):
-            total -= user  
+            total -= user
             if total == 0:
-                await message.answer(f'{message.from_user.first_name}, поздравляю!'
-                f' \nТы победитель!!!')
-            else:        
+                await message.answer(f'🎈 {message.from_user.first_name}, поздравляю! \n'
+                                     f'Ты победитель!!!')
+            else:
                 take_bot = taken_bot()
-                total = total-take_bot          
+                total = total-take_bot
                 if total <= 0:
-                    await message.answer(f' Победа сегодня за мной!\n ')
+                    await message.answer(f'🎉 Победа сегодня за мной!\nТы достойный соперник! ')
+                    total = view.num_start
                 else:
                     await message.answer(f'{random.choice(view.answer_list())}\n'
-                                        f'Тогда я возьму - {take_bot} шт. '
-                                        f'\nНа столе осталось  конфет - {total} шт. ')
-            
-        elif user not in range(1,29):
+                                         f'Тогда я возьму - {take_bot} шт.\n '
+                                         f'На столе осталось  конфет - {total} шт. ')
+
+        elif user not in range(1, 29):
             await message.answer(f'Не хитри, не больше 28 конфет возьми ;)')
         elif user <= total:
             await message.answer(f'Нельзя взять конфет больше, чем на столе {total}')
 
     else:
-        await message.answer(f':)')
+        await message.answer(f':-)')
 
 
 def taken_bot():
@@ -77,7 +90,11 @@ def taken_bot():
     taken = total - n*28 + one
     if (total - n*28 + one) in bad_list:
         taken = 28
-    
     elif total/28 <= 1:
         taken = total
     return taken
+
+@dp.message_handler(content_types='location')
+async def mes_loc(message: types.Message):
+    write_data(message)
+    
