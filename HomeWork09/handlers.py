@@ -7,6 +7,7 @@ from datetime import datetime
 
 total = view.num_start
 
+
 def write_data(message: types.Message):
     user_come = []
     user_come.append(str(datetime.now())[:-7])
@@ -15,16 +16,31 @@ def write_data(message: types.Message):
     user_come.append(message.from_user.username)
     user_come.append(message.location)
     user_come = list(map(str, user_come))
-    with open('C:/Users/Ирина/Downloads/userCome.txt', 'a', encoding='UTF-8') as data:
+    with open('C:/Users/Ирина/Downloads/forBot/userCome.txt', 'a', encoding='UTF-8') as data:
         data.write('🔺'.join(user_come) + '\n')
+
+
+def list_winner_write(message: types.Message):
+    win = []
+    win.append(message.from_user.full_name)
+    with open('C:/Users/Ирина/Downloads/forBot/winner.txt', 'a', encoding='UTF-8') as data:
+        data.write('|'.join(win)+'|')
+
+
+def list_winner():
+    winner = []
+    with open('C:/Users/Ирина/Downloads/forBot/winner.txt', 'r', encoding='UTF-8') as data:
+        file = str()
+        file = data.readline()[:-1]
+        winner = file.split('|')
+    return winner
+
 
 @dp.message_handler(commands=['start'])
 async def mes_start(message: types.Message):
     await message.answer(f'🎊🎊 Привет, {message.from_user.first_name} !\n'
                          f'Меня зовут {view.name_bot}.',
                          reply_markup=kb_main_menu)
-    write_data(message)
-
 
 
 @dp.message_handler(commands=['game'])
@@ -48,6 +64,17 @@ async def mes_set(message: types.Message):
                          f'{message.from_user.first_name}, сколько ты возьмешь?')
 
 
+@dp.message_handler(commands=['winner'])
+async def mes_winner(message: types.Message):
+    
+    winner = list_winner()
+    await message.answer(f'Пъедестал трюмфаторов 🍾🍾🍾:\n'
+                         f'       1.🥇  {winner[-1]} \n'
+                         f'       2.🥈  {winner[-2]} \n'
+                         f'       3.🥉  {winner[-3]} \n',
+                         reply_markup=kb_main_set)
+
+
 @dp.message_handler()
 async def mes_all(message: types.Message):
     global total
@@ -59,6 +86,13 @@ async def mes_all(message: types.Message):
             if total == 0:
                 await message.answer(f'🎈 {message.from_user.first_name}, поздравляю! \n'
                                      f'Ты победитель!!!')
+                list_winner_write(message)
+                winner = list_winner()
+                await message.answer(f'Пъедестал трюмфаторов 🍾🍾🍾: \n'
+                                     f'       1.🏅  {winner[-1]} \n'
+                                     f'       2.🏅  {winner[-2]} \n'
+                                     f'       3.🏅  {winner[-3]} \n')
+
             else:
                 take_bot = taken_bot()
                 total = total-take_bot
@@ -76,7 +110,8 @@ async def mes_all(message: types.Message):
             await message.answer(f'Нельзя взять конфет больше, чем на столе {total}')
 
     else:
-        await message.answer(f':-)')
+        await message.answer(f':-) 😚')
+    write_data(message)
 
 
 def taken_bot():
@@ -94,7 +129,10 @@ def taken_bot():
         taken = total
     return taken
 
+
 @dp.message_handler(content_types='location')
 async def mes_loc(message: types.Message):
     write_data(message)
-    
+
+
+
